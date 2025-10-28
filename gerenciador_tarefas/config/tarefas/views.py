@@ -32,7 +32,8 @@ def adicionar_tarefa(request):
 
         return redirect('lista_tarefas')
     return render(request,'tarefas/form_tarefa.html')
-    def alterar_tarefa (request, tarefa_id):
+
+def alterar_tarefa (request, tarefa_id):
         tarefa = get_object_(Tarefa, pk=tarefa_id)
         if request.method == ('POST'):
             tarefa.titulo = request.POST.get('titulo')
@@ -41,3 +42,11 @@ def adicionar_tarefa(request):
             tarefa.save()#salva as alterações no objeto existente
             return redirect('lista_tarefas')
         return render(request, 'tarefas/form_tarefa.html',{'tarefa':tarefa})
+
+def excluir_tarefa(request, tarefa_id):
+    tarefa = get_object_or_404(Tarefa, pk= tarefa_id)
+    if request.method == 'POST':
+        tarefa.delete()
+        return redirect('lsita_tarefas')
+    return render(request,'tarefas/confirmar_exclusao.html',{'tarefa':tarefa})
+    

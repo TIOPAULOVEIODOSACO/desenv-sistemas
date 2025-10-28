@@ -11,6 +11,7 @@
     <small>Criada em: {{ tarefa.data_cricao }}</small> 
     <hr> 
     <a href = "{% url 'alterar_tarefa' tarefa.id %}">Alterar tarefa </a>
+    <a href="{% url'excluir tarefa' tarefa.id %}">Excluir tarefa</a>
     <a href="{% url 'lista_tarefas' %}">Voltar para a lista</a> 
 </body> 
 </html> 
