@@ -32,3 +32,12 @@ def adicionar_tarefa(request):
 
         return redirect('lista_tarefas')
     return render(request,'tarefas/form_tarefa.html')
+    def alterar_tarefa (request, tarefa_id):
+        tarefa = get_object_(Tarefa, pk=tarefa_id)
+        if request.method == ('POST'):
+            tarefa.titulo = request.POST.get('titulo')
+            tarefa.titulo = request.POST.get('descricao')
+            tarefa.titulo = request.POST.get('concluida') == 'on'
+            tarefa.save()#salva as alterações no objeto existente
+            return redirect('lista_tarefas')
+        return render(request, 'tarefas/form_tarefa.html',{'tarefa':tarefa})
